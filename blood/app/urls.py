@@ -2,13 +2,13 @@ from django.urls import path
 from .import views
 
 urlpatterns = [ 
-    path('',views.login),
+    path('',views.blood_login),
 
     #------------------admin----------------#
-    path('shop_home',views.admin_home),
+    path('admin_home',views.admin_home),
+    path('logout',views.blood_logout),
 
     #------------------user-----------------#
-    path('register',views.register),
     path('user_home',views.user_home),
-  
+    path('register',views.Register),
 ]
