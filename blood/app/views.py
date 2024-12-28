@@ -57,7 +57,7 @@ def Register(req):
         except:
             messages.warning(req,"username already exist")
             return redirect(Register)
-        return redirect(login)
+        return redirect(blood_login)
     else:
         return render(req,'user/register.html')
     
