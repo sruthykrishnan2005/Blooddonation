@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+   body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+  .about-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+  }
+
+  .about-text {
+      max-width: 50%;
+      padding-right: 20px;
+  }
+
+  .about-text h2 {
+      color: #000;
+  }
+
+  .about-text p {
+      color: #524c4c;
+  }
+
+  .about-image {
+      max-width: 50%;
+      text-align: center;
+  }
+
+  .about-image img {
+      max-width: 100%;
+      border-radius: 8px;
+  }
+</style>
+</head>
+{% load static %}
+<body>
+
+
+      <div style="display: flex; align-items: center; justify-content: center; padding: 20px; font-family: Arial, sans-serif; line-height: 1.6;">
+        <div style="max-width: 50%; padding-right: 20px;">
+          <h2 style="color: #000;">About Us</h2>
+          <p style="color: #333;">
+            Each day, thousands of people – people just like you – provide compassionate care to those in need. Our network of generous donors, volunteers and employees share a mission of preventing and relieving suffering, here at home and around the world.
+            We roll up our sleeves and donate time, money and blood. We learn or teach life-saving skills so our communities can be better prepared when the need arises. We do this every day because the Red Cross is needed - every day.
+          </p>
+        </div>
+        <div style="max-width: 50%; text-align: center;">
+          <img src="{% static 'images/blood about.jpeg' %}" alt="Blood Donation" style="max-width: 100%; border-radius: 8px;">
+        </div>
+      </div>
+      
+      <div style="display: flex; align-items: center; justify-content: center; padding: 20px; font-family: Arial, sans-serif; line-height: 1.6;">
+        <div style="max-width: 50%; padding-right: 20px;">
+            <p style="color: #333;">
+                The gift of blood helps save lives and the demand for blood and blood products is great. Every two seconds, someone in the Unites States needs blood, and more than 60,000 units of blood are needed each year at Cedars-Sinai alone. Learn more about blood types and compatibility, different ways to donate and the need for lifesaving blood so you can make an informed decision about donation.
+            </p>
+        </div>
+        <div style="max-width: 50%; text-align: center;">
+            <img src="{% static 'images/bloodabout2.jpg' %}" alt="Blood Donation" style="max-width: 100%; border-radius: 8px;">
+        </div>
+    </div>
+    
+      
+
+</body>
+</html>

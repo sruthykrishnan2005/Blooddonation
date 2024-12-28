@@ -39,6 +39,24 @@ def blood_logout(req):
 def admin_home(req):
     return render(req,'admin/home.html')
 
+def add_blood_request(req) :
+    if 'admin' in req.session:
+        if req.method=='POST':
+            id=req.POST['id']
+            patient_name=req.POST['pname']
+            description=req.POST['descrip']
+            place=req.POST['place']
+            contact_no=req.POST['cno']
+            request_date=req.POST['']
+            data=BloodRequest.objects.create(id=id,name=patient_name,dis=description,place=place,contactno=contact_no,requestdate=request_date)
+            data.save()
+            return redirect(admin_home)
+        else:
+            
+            return render(req,'admin/addbloodrequest.html')
+    else:
+        return redirect(blood_login) 
+
 
 
 
@@ -60,4 +78,9 @@ def Register(req):
         return redirect(blood_login)
     else:
         return render(req,'user/register.html')
+    
+
+def about_us(req):
+    return render(req,'user/about.html')
+
     

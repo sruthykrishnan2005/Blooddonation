@@ -11,3 +11,14 @@ class Donor(models.Model):
 
     def __str__(self):
         return f"{self.user.username} ({self.blood_group})"
+    
+
+class BloodRequest(models.Model):
+    patient_name = models.CharField(max_length=100)
+    description = models.TextField()
+    place = models.CharField(max_length=100)
+    contact_no = models.CharField(max_length=15)
+    request_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Blood request for {self.patient_name} at {self.place}"
