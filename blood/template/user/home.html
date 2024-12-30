@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <style>
-   body {
+    body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -153,71 +153,71 @@
       border-radius: 90px;
       margin-top: 20px;
     }
+
     * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.footer-container {
-  background-color: rgb(199, 204, 204);
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  width: 100%;
-}
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.footer-logo img {
-  height: 80px;
-  max-width: 100%;
-  height: auto;
-}
+    .footer-container {
+      background-color: rgb(199, 204, 204);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+    }
 
-.footer-text {
-  margin-top: 20px;
-  line-height: 1.6;
-  font-size: 16px;
-  color: black;
-}
+    .footer-logo img {
+      height: 80px;
+      max-width: 100%;
+      height: auto;
+    }
 
-.footer-link {
-  color: #4bb1ff;
-  text-decoration: none;
-}
+    .footer-text {
+      margin-top: 20px;
+      line-height: 1.6;
+      font-size: 16px;
+      color: black;
+    }
 
-.footer-link:hover {
-  text-decoration: underline;
-}
+    .footer-link {
+      color: #4bb1ff;
+      text-decoration: none;
+    }
 
-.social-links {
-  margin-top: 20px;
-}
+    .footer-link:hover {
+      text-decoration: underline;
+    }
 
-.social-icon {
-  width: 30px;
-  margin-right: 10px;
-  transition: transform 0.3s ease;
-}
+    .social-links {
+      margin-top: 20px;
+    }
 
-.social-icon:hover {
-  transform: scale(1.1);
-}
+    .social-icon {
+      width: 30px;
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
 
-.footer-bottom {
-  margin-top: 20px;
-  font-size: 14px;
-  color: black;
-}
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
 
-.footer-bottom a {
-  color: #0fb9e4;
-  text-decoration: none;
-}
+    .footer-bottom {
+      margin-top: 20px;
+      font-size: 14px;
+      color: black;
+    }
 
-.footer-bottom a:hover {
-  text-decoration: underline;
-}
+    .footer-bottom a {
+      color: #0fb9e4;
+      text-decoration: none;
+    }
 
-
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -237,10 +237,10 @@
             <a class="nav-link" href="about_us">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Register To Donate</a>
+            <a class="nav-link" href="register_to_donate">Register To Donate</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Contact us</a>
+            <a class="nav-link" href="contact">Contact us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="logout">Logout</a>
@@ -269,7 +269,7 @@
     <div class="header">
       <h1>More Ways You Can Make a Difference</h1>
     </div>
-    
+
     <div class="options">
       <div class="option">
         <img src="{% static 'images/banner-blood-drives.jpg' %}" alt="Blood Drive">
@@ -287,7 +287,7 @@
         <a href="#" class="button">Donate Now »</a>
       </div>
     </div>
-    
+
     <div class="platelet-section">
       <h2>Platelet Donors Help Patients like London Survive Cancer</h2>
       <p>You can save lives</p>
@@ -298,12 +298,12 @@
       <div class="row">
         {% for blood in BloodRequest %}
         <div class="col-lg-4">
-          <a href=" product_view/{{blood.pk}}">
+          <a href=" view_patient/{{blood.pk}}">
             <div class="card" style="width:400px">
               <div class="card-body">
                 <h4 class="card-title">{{blood.patient_name}}</h4>
                 <p class="card-text">{{blood.description}}</p>
-                
+
               </div>
             </div>
           </a>
@@ -318,7 +318,11 @@
       </div>
       <p class="footer-text">
         Kerala's most trusted free voluntary blood donors website and blood donation app
-        <a href="#" class="footer-link">Blood Donation</a> with unique features including Donor Directory, Friend circle, WhatsApp supported blood request system, Digital Donor Card and also having blood donor registry and login facility for updating last donation record etc. By motivating donors, we help people around Kerala who are in need of blood donors and platelet donors. Also we help blood banks and hospitals in Kerala for meeting their blood, platelet and plasma requirements. We have more than 120K followers on
+        <a href="#" class="footer-link">Blood Donation</a> with unique features including Donor Directory, Friend
+        circle, WhatsApp supported blood request system, Digital Donor Card and also having blood donor registry and
+        login facility for updating last donation record etc. By motivating donors, we help people around Kerala who are
+        in need of blood donors and platelet donors. Also we help blood banks and hospitals in Kerala for meeting their
+        blood, platelet and plasma requirements. We have more than 120K followers on
         <a href="#" class="footer-link">facebook</a>.
       </p>
       <div class="social-links">

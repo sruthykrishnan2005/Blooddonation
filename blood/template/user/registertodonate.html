@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register To Donate</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Blood Donation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about_us">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact">Contact us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Register To Donate</h2>
+        <form action="" method="post" class="p-4 shadow-sm bg-white rounded" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="name"><b>Name</b></label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+            </div>
+
+            <div class="form-group">
+                <label for="bldgrp"><b>Blood Group</b></label>
+                <input type="text" class="form-control" name="bldgrp" id="bldgrp" placeholder="Enter blood group">
+            </div>
+
+            <div class="form-group">
+                <label for="cno"><b>Contact Number</b></label>
+                <input type="number" class="form-control" name="cno" id="cno" placeholder="Enter contact no">
+            </div>
+
+            <div class="form-group">
+                <label for="place"><b>Place</b></label>
+                <input type="text" class="form-control" name="place" id="place" placeholder="Enter place">
+            </div>
+
+
+            <div class="form-group">
+                <label for="age"><b>Age</b></label>
+                <input type="number" class="form-control" name="age" id="age" placeholder="Enter age">
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary btn-block">Register To Donate</button>
+        </form>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

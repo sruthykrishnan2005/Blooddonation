@@ -2,7 +2,10 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import *
+import os
 from django.contrib.auth.models import User
+from django.conf import settings
+
 
 # Create your views here.
 def blood_login(request):
@@ -57,6 +60,33 @@ def add_blood_request(req) :
             return render(req,'admin/addbloodrequest.html')
     else:
         return redirect(blood_login) 
+    
+
+
+def edit_patient(req,pid):
+    if req.method=='POST':
+        id=req.POST['id']
+        patient_name=req.POST['pname']
+        description=req.POST['descrip']
+        place=req.POST['place']
+        contact_no=req.POST['cno']
+        request_date=req.POST['reqdate']
+        BloodRequest.objects.filter(pk=pid).update(id=id, patient_name=patient_name, description=description, place=place,contact_no=contact_no,request_date=request_date)
+        data=BloodRequest.objects.get(pk=pid)
+        data.save()
+        return redirect(admin_home)
+    else:
+        data=BloodRequest.objects.get(pk=pid)
+        return render(req,'admin/edit.html',{'BloodRequest':BloodRequest})
+    
+
+def delete_patient(req,pid):
+    data=BloodRequest.objects.get(pk=pid)
+    data.delete()
+    return redirect(admin_home)
+
+
+
 
 
 
@@ -91,7 +121,22 @@ def about_us(req):
 
 def view_patient(req,pid):
        bloodrequest=BloodRequest.objects.get(pk=pid)
-       return render(req,'user/view_pro.html',{'BloodRequest': bloodrequest})
+       return render(req,'user/viewpatient.html',{'BloodRequest': bloodrequest})
+
+def contact(req):
+    return render(req,'user/contact.html')
+
+def register_to_donate(req):
+    if req.method == "POST":
+        data = Donor(req.POST)
+        data.save()
+
+        return redirect(user_home)
+    else:
+        data = Donor()
+        
+    return render(req, 'user/registertodonate.html', {'data': data})
+
 
 
 

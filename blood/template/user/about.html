@@ -1,79 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-<style>
-   body {
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Donation</title>
+  <!-- Bootstrap CSS (Optional, if not included already) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Body Styling */
+    body {
       font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
+    /* Navbar Styling */
+    .navbar {
+      background-color: #343a40;
+    }
 
-  .about-container {
+    .navbar-brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 18px;
+    }
+
+    .navbar-toggler-icon {
+      background-color: white;
+    }
+
+    /* About Section Styling */
+    .about-section {
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 20px;
-  }
+      align-items: center;
+      padding: 40px 20px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
 
-  .about-text {
+    .about-text {
+      flex: 1;
       max-width: 50%;
       padding-right: 20px;
-  }
+      font-size: 18px;
+      line-height: 1.8;
+    }
 
-  .about-text h2 {
+    .about-text h2 {
+      font-size: 30px;
       color: #000;
-  }
+      margin-bottom: 20px;
+    }
 
-  .about-text p {
-      color: #524c4c;
-  }
+    .about-text p {
+      color: #555;
+    }
 
-  .about-image {
+    .about-image {
+      flex: 1;
       max-width: 50%;
       text-align: center;
-  }
+    }
 
-  .about-image img {
-      max-width: 100%;
+    .about-image img {
+      width: 100%;
       border-radius: 8px;
-  }
-</style>
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
-{% load static %}
+
 <body>
-
-
-      <div style="display: flex; align-items: center; justify-content: center; padding: 20px; font-family: Arial, sans-serif; line-height: 1.6;">
-        <div style="max-width: 50%; padding-right: 20px;">
-          <h2 style="color: #000;">About Us</h2>
-          <p style="color: #333;">
-            Each day, thousands of people – people just like you – provide compassionate care to those in need. Our network of generous donors, volunteers and employees share a mission of preventing and relieving suffering, here at home and around the world.
-            We roll up our sleeves and donate time, money and blood. We learn or teach life-saving skills so our communities can be better prepared when the need arises. We do this every day because the Red Cross is needed - every day.
-          </p>
-        </div>
-        <div style="max-width: 50%; text-align: center;">
-          <img src="{% static 'images/blood about.jpeg' %}" alt="Blood Donation" style="max-width: 100%; border-radius: 8px;">
-        </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-sm navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Blood Donation</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../register_to_donate">Register To Donate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact">Contact us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout">Logout</a>
+          </li>
+        </ul>
       </div>
-      
-      <div style="display: flex; align-items: center; justify-content: center; padding: 20px; font-family: Arial, sans-serif; line-height: 1.6;">
-        <div style="max-width: 50%; padding-right: 20px;">
-            <p style="color: #333;">
-                The gift of blood helps save lives and the demand for blood and blood products is great. Every two seconds, someone in the Unites States needs blood, and more than 60,000 units of blood are needed each year at Cedars-Sinai alone. Learn more about blood types and compatibility, different ways to donate and the need for lifesaving blood so you can make an informed decision about donation.
-            </p>
-        </div>
-        <div style="max-width: 50%; text-align: center;">
-            <img src="{% static 'images/bloodabout2.jpg' %}" alt="Blood Donation" style="max-width: 100%; border-radius: 8px;">
-        </div>
     </div>
-    
-      
+  </nav>
 
+  <!-- About Us Section -->
+  <div class="about-section">
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>Each day, thousands of people – people just like you – provide compassionate care to those in need. Our network
+        of generous donors, volunteers, and employees share a mission of preventing and relieving suffering, here at
+        home
+        and around the world. We roll up our sleeves and donate time, money, and blood. We learn or teach life-saving
+        skills so our communities
+        can be better prepared when the need arises. We do this every day because the Red Cross is needed - every day.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="{% static 'images/blood about.jpeg' %}" alt="Blood Donation">
+    </div>
+  </div>
+
+  <div class="about-section">
+    <div class="about-text">
+      <p>The gift of blood helps save lives and the demand for blood and blood products is great. Every two seconds,
+        someone in the United States needs blood, and more than 60,000 units of blood are needed each year at
+        Cedars-Sinai alone. Learn more about blood types and compatibility, different ways to donate, and the need for
+        lifesaving blood so you can make an informed decision about donation.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="{% static 'images/bloodabout2.jpg' %}" alt="Blood Donation">
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional, if not included already) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
