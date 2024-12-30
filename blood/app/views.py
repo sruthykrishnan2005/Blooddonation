@@ -37,7 +37,8 @@ def blood_logout(req):
 
 
 def admin_home(req):
-    return render(req,'admin/home.html')
+    bloodrequest=BloodRequest.objects.all()
+    return render(req,'admin/home.html',{'BloodRequest':bloodrequest})
 
 def add_blood_request(req) :
     if 'admin' in req.session:
@@ -47,8 +48,8 @@ def add_blood_request(req) :
             description=req.POST['descrip']
             place=req.POST['place']
             contact_no=req.POST['cno']
-            request_date=req.POST['']
-            data=BloodRequest.objects.create(id=id,name=patient_name,dis=description,place=place,contactno=contact_no,requestdate=request_date)
+            request_date=req.POST['reqdate']
+            data=BloodRequest.objects.create(id=id, patient_name=patient_name, description=description, place=place,contact_no=contact_no,request_date=request_date)
             data.save()
             return redirect(admin_home)
         else:
@@ -61,7 +62,12 @@ def add_blood_request(req) :
 
 
 def user_home(req):
-    return render(req,'user/home.html')
+    if 'user' in req.session:
+        bloodrequest=BloodRequest.objects.all()
+        return render(req,'user/home.html',{'BloodRequest':bloodrequest})
+    else:
+        return redirect(blood_login)
+    
 
 def Register(req):
     if req.method=='POST':
@@ -82,5 +88,11 @@ def Register(req):
 
 def about_us(req):
     return render(req,'user/about.html')
+
+def view_patient(req,pid):
+       bloodrequest=BloodRequest.objects.get(pk=pid)
+       return render(req,'user/view_pro.html',{'BloodRequest': bloodrequest})
+
+
 
     
