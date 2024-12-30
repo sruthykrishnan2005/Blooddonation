@@ -14,6 +14,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      width: 100%;
     }
 
     /* Header Section */
@@ -152,6 +153,70 @@
       border-radius: 90px;
       margin-top: 20px;
     }
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.footer-container {
+  background-color: rgb(199, 204, 204);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-logo img {
+  height: 80px;
+  max-width: 100%;
+  height: auto;
+}
+
+.footer-text {
+  margin-top: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: black;
+}
+
+.footer-link {
+  color: #4bb1ff;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.social-links {
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 30px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  font-size: 14px;
+  color: black;
+}
+
+.footer-bottom a {
+  color: #0fb9e4;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
 
   </style>
 </head>
@@ -247,32 +312,24 @@
       </div>
     </div>
 
-    <div style="background-color: rgb(199, 204, 204); color: #fff; padding: 20px; text-align: center; width: 100%; box-sizing: border-box; margin: 0; padding-left: 0; padding-right: 0;">
-      <div>
-          <img src="{% static 'images/footerimage.jpg' %}" alt="Kerala Bloodnet Logo" style="height: 80px; max-width: 100%; height: auto;">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="{% static 'images/footerimage.jpg' %}" alt="Blood Donation Logo">
       </div>
-      <p style="margin-top: 20px; width: 100%; box-sizing: border-box;">
-          Kerala's most trusted free voluntary blood donors website and blood donation app 
-          <a href="#" style="color: #4bb1ff; text-decoration: none;">Blood Donation</a> with 
-          unique features including Donor Directory, Friend circle, WhatsApp supported blood request system, 
-          Digital Donor Card and also having blood donor registry and login facility for updating last donation 
-          record etc. By motivating donors, we help people around Kerala who are in need of blood donors and 
-          platelet donors. Also we help blood banks and hospitals in Kerala for meeting their blood, platelet 
-          and plasma requirements. We have more than 120K followers on 
-          <a href="#" style="color: #4bb1ff; text-decoration: none;">facebook</a>.
+      <p class="footer-text">
+        Kerala's most trusted free voluntary blood donors website and blood donation app
+        <a href="#" class="footer-link">Blood Donation</a> with unique features including Donor Directory, Friend circle, WhatsApp supported blood request system, Digital Donor Card and also having blood donor registry and login facility for updating last donation record etc. By motivating donors, we help people around Kerala who are in need of blood donors and platelet donors. Also we help blood banks and hospitals in Kerala for meeting their blood, platelet and plasma requirements. We have more than 120K followers on
+        <a href="#" class="footer-link">facebook</a>.
       </p>
-      <div style="margin-top: 20px;">
-          <a href="#"><img src="{% static 'images/twitter.webp' %}" alt="Twitter" style="width: 30px; margin-right: 10px;"></a>
-          <a href="#"><img src="{% static 'images/facebook.webp' %}" alt="Facebook" style="width: 30px; margin-right: 10px;"></a>
-          <a href="#"><img src="{% static 'images/instagram.png' %}" alt="Instagram" style="width: 30px; margin-right: 10px;"></a>
+      <div class="social-links">
+        <a href="#"><img src="{% static 'images/twitter.webp' %}" alt="Twitter" class="social-icon"></a>
+        <a href="#"><img src="{% static 'images/facebook.webp' %}" alt="Facebook" class="social-icon"></a>
+        <a href="#"><img src="{% static 'images/instagram.png' %}" alt="Instagram" class="social-icon"></a>
       </div>
-      <div style="margin-top: 20px; font-size: 14px; color: #aaa;">
-          © 2012-2024<br>
-          Developed by Basil | <a href="#" style="color: #4bb1ff; text-decoration: none;">Privacy Policy</a>
+      <div class="footer-bottom">
+        <p>© 2012-2024<br>Developed by Basil | <a href="#" class="footer-link">Privacy Policy</a></p>
       </div>
-  </div>
-  
-
+    </div>
 </body>
 
 </html>
