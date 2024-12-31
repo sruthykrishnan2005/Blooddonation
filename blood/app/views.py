@@ -77,7 +77,7 @@ def edit_patient(req,pid):
         return redirect(admin_home)
     else:
         data=BloodRequest.objects.get(pk=pid)
-        return render(req,'admin/edit.html',{'BloodRequest':BloodRequest})
+        return render(req,'admin/edit.html',{'data':data})
     
 
 def delete_patient(req,pid):
@@ -129,7 +129,6 @@ def contact(req):
 def register_to_donate(req):
     if req.method == "POST":
         data = Donor(req.POST)
-        data.save()
 
         return redirect(user_home)
     else:
