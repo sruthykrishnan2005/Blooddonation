@@ -5,6 +5,7 @@ from .models import *
 import os
 from django.contrib.auth.models import User
 from django.conf import settings
+from .models import Donor
 
 
 
@@ -128,14 +129,19 @@ def view_patient(req,pid):
 def contact(req):
     return render(req,'user/contact.html')
 
-def register_to_donate(req):
-    if req.method == "POST":
-        data = Donor(req.POST)
+def register_to_donate(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        blood_group = request.POST.get('bldgrp')
+        contact_number = request.POST.get('cno')
+        place = request.POST.get('place')
+        age = request.POST.get('age')
 
-        return redirect(user_home)
-    else:
-        data = Donor()
-        
-    return render(req, 'user/registertodonate.html', {'data': data})
+        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,place=place,age=age)
+        data.save()
 
+        return redirect('register_to_donate')
 
+    donors = Donor.objects.all()
+
+    return render(request, 'registertodonate.html', {'register_to_donate': donors})
