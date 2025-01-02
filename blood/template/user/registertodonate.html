@@ -28,7 +28,7 @@
                         <a class="nav-link" href="../contact">Contact us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout">Logout</a>
+                        <a class="nav-link" href="../logout">Logout</a>
                     </li>
 
                 </ul>
@@ -71,7 +71,21 @@
             <button type="submit" class="btn btn-primary btn-block">Register To Donate</button>
         </form>
     </div>
-
+    <div class="container mt-5">
+        <div class="row">
+            {% for donor in register_to_donate %}
+            <div class="col-lg-12 mb-4">
+                <div class="col-lg-7">
+                    <h3 class="mb-3">{{ donor.name }}</h3>
+                    <p>Blood Group: <span class="text-success fw-bold">{{ donor.blood_group }}</span></p>
+                    <p>Contact Number: <span class="text-success fw-bold">{{ donor.contact_number }}</span></p>
+                    <p>City: <span class="text-success fw-bold">{{ donor.place }}</span></p>
+                    <p>Age: <span class="text-success fw-bold">{{ donor.age }}</span></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

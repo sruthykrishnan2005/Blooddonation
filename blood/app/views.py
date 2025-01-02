@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 
+
 # Create your views here.
 def blood_login(request):
     if 'admin' in request.session:
@@ -85,7 +86,8 @@ def delete_patient(req,pid):
     data.delete()
     return redirect(admin_home)
 
-
+def view_register_to_donate(req):
+    return render(req,'admin/viewregisterdonate.html')
 
 
 
@@ -137,6 +139,3 @@ def register_to_donate(req):
     return render(req, 'user/registertodonate.html', {'data': data})
 
 
-
-
-    
