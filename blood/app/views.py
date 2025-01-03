@@ -87,11 +87,23 @@ def delete_patient(req,pid):
     data.delete()
     return redirect(admin_home)
 
-def view_register_to_donate(req):
-    return render(req,'admin/viewregisterdonate.html')
+def view_register_donate(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        blood_group = request.POST.get('bldgrp')
+        contact_number = request.POST.get('cno')
+        city = request.POST.get('city')
+        age = request.POST.get('age')
 
+       
+        if name and blood_group and contact_number and city and age:
+            data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
+            data.save()
+            
+            return redirect('admin_home')
 
-
+    donors = Donor.objects.all()
+    return render(request, 'admin/viewregisterdonate.html', {'donors': donors})
 
 
 def user_home(req):
@@ -123,8 +135,8 @@ def about_us(req):
     return render(req,'user/about.html')
 
 def view_patient(req,pid):
-       bloodrequest=BloodRequest.objects.get(pk=pid)
-       return render(req,'user/viewpatient.html',{'BloodRequest': bloodrequest})
+       data=BloodRequest.objects.get(pk=pid)
+       return render(req,'user/viewpatient.html',{'BloodRequest': data})
 
 def contact(req):
     return render(req,'user/contact.html')
@@ -134,14 +146,14 @@ def register_to_donate(request):
         name = request.POST.get('name')
         blood_group = request.POST.get('bldgrp')
         contact_number = request.POST.get('cno')
-        place = request.POST.get('place')
+        city = request.POST.get('city')
         age = request.POST.get('age')
 
-        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,place=place,age=age)
+        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
         data.save()
 
-        return redirect('register_to_donate')
+        return redirect(register_to_donate)
 
     donors = Donor.objects.all()
 
-    return render(request, 'registertodonate.html', {'register_to_donate': donors})
+    return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
