@@ -20,33 +20,16 @@
             color: #333;
         }
 
+        /* Base styles for container and modal */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background-color: rgb(149, 137, 137);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .col-md-8 {
-            flex: 0 0 66.6667%;
-            max-width: 66.6667%;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            padding: 15px;
         }
 
         .text-muted {
-            color: black;
+            font-size: 14px;
+            color: #6c757d;
         }
 
         .fw-normal {
@@ -57,10 +40,6 @@
             font-weight: bold;
         }
 
-        .text-primary {
-            color: #007bff;
-        }
-
         .text-success {
             color: #28a745;
         }
@@ -69,35 +48,159 @@
             color: #dc3545;
         }
 
-        del {
-            text-decoration: line-through;
+        .text-primary {
+            color: #007bff;
         }
 
-        del.text-success {
-            text-decoration: none;
+        .modal-content {
+            border-radius: 10px;
         }
 
-        del.text-success {
-            color: #28a745;
-            font-style: italic;
+        .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
         }
 
-        del.text-danger {
-            color: #dc3545;
-            font-style: italic;
+        .modal-title {
+            font-size: 18px;
+            font-weight: bold;
         }
 
-        .container.mt-5 {
-            margin-top: 50px;
+        .close {
+            font-size: 24px;
         }
 
-        @media (max-width: 768px) {
+        .modal-body {
+            padding: 20px;
+        }
+
+        form {
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-control:focus {
+            border-color: #004085;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #004085;
+            color: white;
+            font-size: 16px;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #003366;
+        }
+
+        button.btn-danger {
+            background-color: #dc3545;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button.btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
             .container {
-                padding: 20px 10px;
+                padding: 15px;
             }
 
-            p {
-                font-size: 1rem;
+            .text-muted {
+                font-size: 13px;
+            }
+
+            .modal-dialog {
+                max-width: 90%;
+            }
+
+            .form-control {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .form-group label {
+                font-size: 14px;
+            }
+
+            button[type="submit"],
+            button.btn-danger {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .modal-title {
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .modal-dialog {
+                max-width: 100%;
+            }
+
+            .form-control {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            .modal-body {
+                padding: 15px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+            }
+
+            button[type="submit"],
+            button.btn-danger {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .modal-title {
+                font-size: 14px;
             }
         }
     </style>

@@ -99,7 +99,7 @@ def view_register_donate(request):
        
         if name and blood_group and contact_number and city and age:
             data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
-            data.save()from .forms import DonorRegistrationForm
+            data.save()
             
             return redirect('admin_home')
 
@@ -135,30 +135,37 @@ def Register(req):
 def about_us(req):
     return render(req,'user/about.html')
 
-# def view_patient(req,pid):
-#        data=BloodRequest.objects.get(pk=pid)
-#        return render(req,'user/viewpatient.html',{'BloodRequest': data})
-
-
-def view_patient(request, pid):
-  
-    try:
-        patient = BloodRequest.objects.get(id=pid)
-    except BloodRequest.DoesNotExist:
-        return HttpResponse("Patient not found", status=404)
-
-    if request.method == "POST":
-        form = DonorRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('') 
-
+def view_patient(req,pid):
+    if 'shop' in req.session:
+        data=Donor.objects.all(pk=pid)
+        return render(req,'user/viewpatient.html',{'products':data})
     else:
-        # Display empty form
-        form = DonorRegistrationForm()
+        return redirect(register_to_donate)
+       
+    #    data=BloodRequest.objects.get(pk=pid)
 
-    # Render the patient details page with the form
-    return render(request, 'user/viewpatient.html', {'patient': patient, 'form': form})
+    #    return render(req,'user/viewpatient.html',{'BloodRequest': data})
+
+
+# def view_patient(request, pid):
+  
+#     try:
+#         patient = BloodRequest.objects.get(id=pid)
+#     except BloodRequest.DoesNotExist:
+#         return HttpResponse("Patient not found", status=404)
+
+#     if request.method == "POST":
+#         form = DonorRegistrationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('') 
+
+#     else:
+#         # Display empty form
+#         form = DonorRegistrationForm()
+
+#     # Render the patient details page with the form
+#     return render(request, 'user/viewpatient.html', {'patient': patient, 'form': form})
 
 def contact(req):
     return render(req,'user/contact.html')
