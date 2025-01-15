@@ -136,9 +136,9 @@ def about_us(req):
     return render(req,'user/about.html')
 
 def view_patient(req,pid):
-    if 'shop' in req.session:
+    if 'admin' in req.session:
         data=Donor.objects.all(pk=pid)
-        return render(req,'user/viewpatient.html',{'products':data})
+        return render(req,'user/viewpatient.html',{'donors':data})
     else:
         return redirect(register_to_donate)
        
