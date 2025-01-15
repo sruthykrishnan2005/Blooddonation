@@ -113,10 +113,62 @@
                 <p>contact_no: <del style="text-decoration: line-through;"
                         class="text-danger">{{BloodRequest.contact_no}}</del></p>
                 <p>request_date: <span class="fw-bold text-primary">{{BloodRequest.request_date}}</span></p>
+
+                <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#registerModal">
+                    Register to Donate
+                </button>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register to Donate Blood</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please enter your details to register for blood donation.</p>
+                    <form action="" method="post" class="p-4 shadow-sm bg-white rounded" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="name"><b>Name</b></label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bldgrp"><b>Blood Group</b></label>
+                            <input type="text" class="form-control" name="bldgrp" id="bldgrp"
+                                placeholder="Enter blood group">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cno"><b>Contact Number</b></label>
+                            <input type="number" class="form-control" name="cno" id="cno"
+                                placeholder="Enter contact no">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city"><b>City</b></label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="Enter city">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="age"><b>Age</b></label>
+                            <input type="number" class="form-control" name="age" id="age" placeholder="Enter age">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

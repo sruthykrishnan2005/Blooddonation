@@ -6,6 +6,7 @@ import os
 from django.contrib.auth.models import User
 from django.conf import settings
 from .models import Donor
+from .forms import DonorRegistrationForm
 
 
 
@@ -98,7 +99,7 @@ def view_register_donate(request):
        
         if name and blood_group and contact_number and city and age:
             data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
-            data.save()
+            data.save()from .forms import DonorRegistrationForm
             
             return redirect('admin_home')
 
@@ -134,9 +135,30 @@ def Register(req):
 def about_us(req):
     return render(req,'user/about.html')
 
-def view_patient(req,pid):
-       data=BloodRequest.objects.get(pk=pid)
-       return render(req,'user/viewpatient.html',{'BloodRequest': data})
+# def view_patient(req,pid):
+#        data=BloodRequest.objects.get(pk=pid)
+#        return render(req,'user/viewpatient.html',{'BloodRequest': data})
+
+
+def view_patient(request, pid):
+  
+    try:
+        patient = BloodRequest.objects.get(id=pid)
+    except BloodRequest.DoesNotExist:
+        return HttpResponse("Patient not found", status=404)
+
+    if request.method == "POST":
+        form = DonorRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('') 
+
+    else:
+        # Display empty form
+        form = DonorRegistrationForm()
+
+    # Render the patient details page with the form
+    return render(request, 'user/viewpatient.html', {'patient': patient, 'form': form})
 
 def contact(req):
     return render(req,'user/contact.html')
