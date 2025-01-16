@@ -15,15 +15,16 @@
       padding: 0;
       box-sizing: border-box;
       width: 100%;
+      background-color: black;
     }
 
     .header-banner {
       width: 100%;
       height: auto;
       text-align: center;
-      color: red;
+      color: rgb(165, 60, 60);
       padding: 20px;
-      background-color: #f8f9fa;
+      background-color: red;
     }
 
     .header-banner h1 {
@@ -40,7 +41,7 @@
     .container {
       padding: 20px;
       text-align: center;
-      background-color: #f4f4f4;
+      background-color: rgb(157, 240, 236);
     }
 
     .card {
@@ -116,91 +117,132 @@
       background-color: darkred;
     }
 
-   /* Base styles */
-.platelet-section {
-  background-color: #004085;
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
-  margin-top: 20px;
-}
+    /* Base styles */
+    .platelet-section {
+      background-color: #004085;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 20px;
+    }
 
-.platelet-section h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
+    .platelet-section h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
 
-.platelet-section p {
-  font-size: 16px;
-}
+    .platelet-section p {
+      font-size: 16px;
+    }
 
-.platelet-section .button {
-  text-decoration: none;
-  background-color: red;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 14px;
-  margin-top: 10px;
-  display: inline-block;
-}
+    .platelet-section .button {
+      text-decoration: none;
+      background-color: red;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-top: 10px;
+      display: inline-block;
+    }
 
-.platelet-section img {
-  width: 600px;
-  border-radius: 90px;
-  margin-top: 20px;
-}
+    .platelet-section img {
+      width: 600px;
+      border-radius: 90px;
+      margin-top: 20px;
+    }
 
-/* Responsive design */
-@media screen and (max-width: 768px) {
-  .platelet-section {
-    padding: 20px 15px;
-  }
+    /* Responsive design */
+    @media screen and (max-width: 768px) {
+      .platelet-section {
+        padding: 20px 15px;
+      }
 
-  .platelet-section h2 {
-    font-size: 20px;
-  }
+      .platelet-section h2 {
+        font-size: 20px;
+      }
 
-  .platelet-section p {
-    font-size: 14px;
-  }
+      .platelet-section p {
+        font-size: 14px;
+      }
 
-  .platelet-section .button {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
+      .platelet-section .button {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
 
-  .platelet-section img {
-    width: 100%;
-    max-width: 500px; /* Set a max width for images */
-    border-radius: 50%; /* Make the image more circular */
-  }
-}
+      .platelet-section img {
+        width: 100%;
+        max-width: 500px;
+        /* Set a max width for images */
+        border-radius: 50%;
+        /* Make the image more circular */
+      }
+    }
 
-@media screen and (max-width: 480px) {
-  .platelet-section {
-    padding: 15px 10px;
-  }
+    @media screen and (max-width: 480px) {
+      .platelet-section {
+        padding: 15px 10px;
+      }
 
-  .platelet-section h2 {
-    font-size: 18px;
-  }
+      .platelet-section h2 {
+        font-size: 18px;
+      }
 
-  .platelet-section p {
-    font-size: 12px;
-  }
+      .platelet-section p {
+        font-size: 12px;
+      }
 
-  .platelet-section .button {
-    padding: 6px 10px;
-    font-size: 10px;
-  }
+      .platelet-section .button {
+        padding: 6px 10px;
+        font-size: 10px;
+      }
 
-  .platelet-section img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 50%;
-  }
-}
+      .platelet-section img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 50%;
+      }
+    }
+
+    /* Default card styling */
+    .card {
+      width: 100%;
+      /* Make the card flexible to take the full width of its parent */
+      max-width: 400px;
+      /* Maximum width for large screens */
+      margin: 0 auto;
+      /* Center the card horizontally */
+      margin-bottom: 15px;
+      /* Space between cards */
+    }
+
+    /* For small screens (phones) */
+    @media (max-width: 576px) {
+      .card {
+        width: 90%;
+        /* On small screens, make the card 90% of the screen width */
+        max-width: none;
+        /* Remove max-width restriction */
+      }
+    }
+
+    /* For medium screens (tablets) */
+    @media (min-width: 577px) and (max-width: 767px) {
+      .card {
+        width: 80%;
+        /* On medium screens (like tablets), the card should take up 80% of the width */
+      }
+    }
+
+    /* For larger screens (desktops) */
+    @media (min-width: 768px) {
+      .card {
+        width: 60%;
+        /* On larger screens (like desktops), the card will take 60% of the screen width */
+      }
+    }
+
 
     * {
       margin: 0;

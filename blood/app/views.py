@@ -135,13 +135,34 @@ def Register(req):
 def about_us(req):
     return render(req,'user/about.html')
 
-def view_patient(req,pid):
-    if 'admin' in req.session:
-        data=Donor.objects.all(pk=pid)
-        return render(req,'user/viewpatient.html',{'donors':data})
-    else:
+# def view_patient(req,pid):
+#     if 'admin' in req.session:
+#         data=Donor.objects.all(pk=pid)
+#         return render(req,'user/viewpatient.html',{'donors':data})
+#     else:
+#         return redirect(register_to_donate)
+
+
+def view_patient(request,pid):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        blood_group = request.POST.get('bldgrp')
+        contact_number = request.POST.get('cno')
+        city = request.POST.get('city')
+        age = request.POST.get('age')
+        
+        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
+        data.save()
+
         return redirect(register_to_donate)
-       
+
+    donors = Donor.objects.all()
+
+    return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
+    data=BloodRequest.objects.get(pk=pid)
+    return render(request,'user/viewpatient.html',{'BloodRequest': data})
+
+
     #    data=BloodRequest.objects.get(pk=pid)
 
     #    return render(req,'user/viewpatient.html',{'BloodRequest': data})
@@ -177,7 +198,7 @@ def register_to_donate(request):
         contact_number = request.POST.get('cno')
         city = request.POST.get('city')
         age = request.POST.get('age')
-
+        
         data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
         data.save()
 
