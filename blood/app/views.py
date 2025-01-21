@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from .models import Donor
 from .forms import DonorRegistrationForm
+from .forms import BloodDonationRequestForm
+
 
 
 
@@ -107,13 +109,45 @@ def view_register_donate(request):
     return render(request, 'admin/viewregisterdonate.html', {'donors': donors})
 
 
+
+# def blood_donation_request(request):
+#     if request.method == "POST":
+#         form = BloodDonationRequestForm(request.POST)
+#         if form.is_valid():
+#             # Save the data to the database
+#             blood_request = BloodDonationRequest(
+#                 full_name=form.cleaned_data['full_name'],
+#                 email=form.cleaned_data['email'],
+#                 phone=form.cleaned_data['phone'],
+#                 message=form.cleaned_data['message']
+#             )
+#             blood_request.save()
+#             return HttpResponse("Thank you for your blood donation request! We will get in touch with you soon.")
+#     else:
+#         form = BloodDonationRequestForm()
+
+#     return render(request, 'user/home.html', {'form': form})
+
+
+def blood_donation_request(request):
+    if request.method == "POST":
+        form = BloodDonationRequestForm(request.POST)
+        if form.is_valid():
+            # Save the form data directly to the database, including the 'created_at' field automatically
+            form.save()  # Django handles the 'created_at' field automatically
+            return HttpResponse("Thank you for your blood donation request! We will get in touch with you soon.")
+    else:
+        form = BloodDonationRequestForm()
+
+    return render(request, 'blood_donation_request.html', {'form': form})
+    
 def user_home(req):
     if 'user' in req.session:
         bloodrequest=BloodRequest.objects.all()
         return render(req,'user/home.html',{'BloodRequest':bloodrequest})
     else:
         return redirect(blood_login)
-    
+
 
 def Register(req):
     if req.method=='POST':
@@ -207,3 +241,4 @@ def register_to_donate(request):
     donors = Donor.objects.all()
 
     return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
+
