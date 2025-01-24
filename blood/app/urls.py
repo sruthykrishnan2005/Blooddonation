@@ -22,5 +22,5 @@ urlpatterns = [
     path('view_patient/<pid>',views.view_patient),
     path('contact/', views.contact),
     path('register_to_donate/', views.register_to_donate),
-    path('request_blood_donation/', views.blood_donation_request, name='blood_donation_request'),
+    path('request_blood_donation/', views.request_blood_donation, name='request_blood_donation'),
 ]

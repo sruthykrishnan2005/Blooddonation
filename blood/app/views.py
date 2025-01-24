@@ -129,18 +129,18 @@ def view_register_donate(request):
 #     return render(request, 'user/home.html', {'form': form})
 
 
-def blood_donation_request(request):
-    if request.method == "POST":
+def request_blood_donation(request):
+    if request.method == 'POST':
         form = BloodDonationRequestForm(request.POST)
         if form.is_valid():
-            # Save the form data directly to the database, including the 'created_at' field automatically
-            form.save()  # Django handles the 'created_at' field automatically
-            return HttpResponse("Thank you for your blood donation request! We will get in touch with you soon.")
+            form.save()  # Save the form data into the BloodDonationRequest model
+            return redirect(user_home)  # Redirect to a thank you page after successful submission
     else:
         form = BloodDonationRequestForm()
 
-    return render(request, 'blood_donation_request.html', {'form': form})
-    
+    return render(request, 'user/requestblooddonation.html', {'form': form})
+
+
 def user_home(req):
     if 'user' in req.session:
         bloodrequest=BloodRequest.objects.all()
