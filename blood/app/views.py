@@ -129,16 +129,16 @@ def view_register_donate(request):
 #     return render(request, 'user/home.html', {'form': form})
 
 
-def request_blood_donation(request):
-    if request.method == 'POST':
-        form = BloodDonationRequestForm(request.POST)
-        if form.is_valid():
-            form.save()  # Save the form data into the BloodDonationRequest model
-            return redirect(user_home)  # Redirect to a thank you page after successful submission
-    else:
-        form = BloodDonationRequestForm()
+# def request_blood_donation(request):
+#     if request.method == 'POST':
+#         form = BloodDonationRequestForm(request.POST)
+#         if form.is_valid():
+#             form.save()  # Save the form data into the BloodDonationRequest model
+#             return redirect('thank_you')  # Redirect to a thank you page after successful submission
+#     else:
+#         form = BloodDonationRequestForm()
 
-    return render(request, 'user/requestblooddonation.html', {'form': form})
+#     return render(request, 'user/requestblooddonation.html', {'form': form})
 
 
 def user_home(req):
