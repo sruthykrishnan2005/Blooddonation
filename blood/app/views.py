@@ -189,18 +189,10 @@ def view_patient(request,pid):
         data.save()
 
         return redirect(register_to_donate)
-
     donors = Donor.objects.all()
-
     return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
     data=BloodRequest.objects.get(pk=pid)
     return render(request,'user/viewpatient.html',{'BloodRequest': data})
-
-
-    #    data=BloodRequest.objects.get(pk=pid)
-
-    #    return render(req,'user/viewpatient.html',{'BloodRequest': data})
-
 
 # def view_patient(request, pid):
   
@@ -221,6 +213,8 @@ def view_patient(request,pid):
 
 #     # Render the patient details page with the form
 #     return render(request, 'user/viewpatient.html', {'patient': patient, 'form': form})
+
+
 
 def contact(req):
     return render(req,'user/contact.html')

@@ -435,6 +435,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   {% load static %}
   <meta charset="UTF-8">
@@ -444,9 +445,9 @@
 
 
   <style>
-
     body {
       font-family: Arial, sans-serif;
+      background-color: red;
     }
 
 
@@ -457,10 +458,12 @@
     .navbar-brand {
       font-size: 1.8rem;
       font-weight: bold;
+
     }
 
     .navbar-nav .nav-link {
       font-size: 1.1rem;
+
     }
 
     .header-banner {
@@ -489,7 +492,8 @@
       margin-bottom: 20px;
     }
 
-    .card h1, .header h1 {
+    .card h1,
+    .header h1 {
       text-align: center;
       font-size: 2.5rem;
       font-weight: bold;
@@ -632,7 +636,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Blood Donation</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -659,53 +663,61 @@
 
 
   <div class="container">
-    <div class="card">
+    <div class="card mb-4">
       <h1>Give local, save local with LifeSouth Community Blood Centers.</h1>
-      <p>Our mission is to provide a safe blood supply that meets or exceeds the needs in each community we serve, and to provide a variety of services in support of ongoing and emerging blood and transfusion-related activities.</p>
+      <p>
+        Our mission is to provide a safe blood supply that meets or exceeds the needs in each community we serve,
+        and to provide a variety of services in support of ongoing and emerging blood and transfusion-related
+        activities.
+      </p>
       <img src="{% static 'images/img1.jpg' %}" alt="Blood Donation Center" class="img-fluid">
     </div>
 
 
-    <div class="header">
-      <h1>More Ways You Can Make a Difference</h1>
+    <div class="header text-center mb-5">
+      <h1 class="display-4">More Ways You Can Make a Difference</h1>
     </div>
 
-    <div class="options">
-      <div class="option">
-        <img src="{% static 'images/banner-blood-drives.jpg' %}" alt="Blood Drive">
-        <h3>Host a Blood Drive</h3>
-        <a href="#" class="button">Apply to Become a Host »</a>
+    <div class="options row justify-content-center">
+      <div class="col-md-4 mb-4">
+        <div class="option text-center">
+          <img src="{% static 'images/banner-blood-drives.jpg' %}" alt="Blood Drive" class="img-fluid rounded mb-3">
+          <h3 class="mt-3">Host a Blood Drive</h3>
+          <a href="#" class="btn btn-primary btn-lg mt-2">Apply to Become a Host »</a>
+        </div>
       </div>
-      <div class="option">
-        <img src="{% static 'images/becomeavolunteeer.jpeg' %}" alt="Volunteer">
-        <h3>Become a Volunteer</h3>
-        <a href="#" class="button">Learn More »</a>
+      <div class="col-md-4 mb-4">
+        <div class="option text-center">
+          <img src="{% static 'images/becomeavolunteeer.jpeg' %}" alt="Volunteer" class="img-fluid rounded mb-3">
+          <h3 class="mt-3">Become a Volunteer</h3>
+          <a href="#" class="btn btn-primary btn-lg mt-2">Learn More »</a>
+        </div>
       </div>
-      <div class="option">
-        <img src="{% static 'images/makeafinancial.jpeg' %}" alt="Donate">
-        <h3>Make a Financial Donation</h3>
-        <a href="#" class="button">Donate Now »</a>
+      <div class="col-md-4 mb-4">
+        <div class="option text-center">
+          <img src="{% static 'images/makeafinancial.jpeg' %}" alt="Donate" class="img-fluid rounded mb-3">
+          <h3 class="mt-3">Make a Financial Donation</h3>
+          <a href="#" class="btn btn-primary btn-lg mt-2">Donate Now »</a>
+        </div>
       </div>
     </div>
 
-
-    <div class="platelet-section">
+    <div class="platelet-section text-center mb-5">
       <h2>Platelet Donors Help Patients like London Survive Cancer</h2>
       <p>You can save lives</p>
-      <img src="{% static 'images/cancerpatient.jpeg' %}" alt="London, Cancer Survivor">
+      <img src="{% static 'images/cancerpatient.jpeg' %}" alt="London, Cancer Survivor" class="img-fluid">
     </div>
 
 
-  
     <div class="container">
       <div class="row">
         {% for blood in BloodRequest %}
         <div class="col-lg-4 col-md-6 mb-4">
-          <a href="view_patient/{{blood.pk}}">
-            <div class="card" style="width:100%">
+          <a href="view_patient/{{ blood.pk }}" style="text-decoration: none;">
+            <div class="card">
               <div class="card-body">
-                <h4 class="card-title">{{blood.patient_name}}</h4>
-                <p class="card-text">{{blood.description}}</p>
+                <h4 class="card-title">{{ blood.patient_name }}</h4>
+                <p class="card-text">{{ blood.description }}</p>
               </div>
             </div>
           </a>
@@ -714,27 +726,30 @@
       </div>
     </div>
 
-    
-  <div class="footer-container">
-    <div class="footer-logo">
-      <img src="{% static 'images/footerimage.jpg' %}" alt="Blood Donation Logo">
-    </div>
-    <p class="footer-text">
-      Kerala's most trusted free voluntary blood donors website and blood donation app. 
-      <a href="#" class="footer-link">Blood Donation</a> with unique features including Donor Directory, Friend circle, WhatsApp supported blood request system, Digital Donor Card, and more.
-    </p>
-    <div class="social-links">
-      <a href="#"><img src="{% static 'images/twitter.webp' %}" alt="Twitter" class="social-icon"></a>
-      <a href="#"><img src="{% static 'images/facebook.webp' %}" alt="Facebook" class="social-icon"></a>
-      <a href="#"><img src="{% static 'images/instagram.png' %}" alt="Instagram" class="social-icon"></a>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2012-2024<br>Developed by Basil | <a href="#" class="footer-link">Privacy Policy</a></p>
-    </div>
-  </div>
+    <div class="footer-container">
+      <div class="footer-logo text-center mb-4">
+        <img src="{% static 'images/footerimage.jpg' %}" alt="Blood Donation Logo" class="img-fluid">
+      </div>
+      <p class="footer-text text-center">
+        Kerala's most trusted free voluntary blood donors website and blood donation app.
+        <a href="#" class="footer-link">Blood Donation</a> with unique features including Donor Directory, Friend
+        circle, WhatsApp supported blood request system, Digital Donor Card, and more.
+      </p>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+      <div class="social-links text-center mb-4">
+        <a href="#" class="mx-2"><img src="{% static 'images/twitter.webp' %}" alt="Twitter" class="social-icon"></a>
+        <a href="#" class="mx-2"><img src="{% static 'images/facebook.webp' %}" alt="Facebook" class="social-icon"></a>
+        <a href="#" class="mx-2"><img src="{% static 'images/instagram.png' %}" alt="Instagram" class="social-icon"></a>
+      </div>
+
+      <div class="footer-bottom text-center">
+        <p>© 2012-2024<br>Developed by Basil | <a href="#" class="footer-link">Privacy Policy</a></p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
