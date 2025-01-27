@@ -67,7 +67,6 @@ def add_blood_request(req) :
         return redirect(blood_login) 
     
 
-
 def edit_patient(req,pid):
     if req.method=='POST':
         id=req.POST['id']
@@ -189,8 +188,8 @@ def view_patient(request,pid):
         data.save()
 
         return redirect(register_to_donate)
-    donors = Donor.objects.all()
-    return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
+    # donors = Donor.objects.all()
+    # return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
     data=BloodRequest.objects.get(pk=pid)
     return render(request,'user/viewpatient.html',{'BloodRequest': data})
 
