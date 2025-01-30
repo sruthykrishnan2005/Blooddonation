@@ -2,12 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import *
+from .forms import *
 import os
 from django.contrib.auth.models import User
 from django.conf import settings
-from .models import Donor
-from .forms import DonorRegistrationForm
-from .forms import BloodDonationRequestForm
+# from .models import Donor
+# from .forms import DonorRegistrationForm
+# from .forms import BloodDonationRequestForm
 
 
 
@@ -128,18 +129,19 @@ def view_register_donate(request):
 #     return render(request, 'user/home.html', {'form': form})
 
 
-# def request_blood_donation(request):
-#     if request.method == 'POST':
-#         form = BloodDonationRequestForm(request.POST)
-#         if form.is_valid():
-#             form.save()  # Save the form data into the BloodDonationRequest model
-#             return redirect('thank_you')  # Redirect to a thank you page after successful submission
-#     else:
-#         form = BloodDonationRequestForm()
+def blood_donation_request(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        place = request.POST.get('place')
+        message = request.POST.get('message')
 
-#     return render(request, 'user/requestblooddonation.html', {'form': form})
+        blood_donation_request = BloodDonationRequest(name=name,phone=phone,place=place,message=message)
+        blood_donation_request.save()
 
-
+        return redirect('user_home')
+    return render(request, 'user/home.html')
+    
 def user_home(req):
     if 'user' in req.session:
         bloodrequest=BloodRequest.objects.all()

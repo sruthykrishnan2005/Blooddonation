@@ -23,13 +23,12 @@ class BloodRequest(models.Model):
     def __str__(self):
         return f"Blood request for {self.patient_name} at {self.place}"
 
-
 class BloodDonationRequest(models.Model):
-    full_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    name = models.CharField(max_length=255)
     phone = models.CharField(max_length=15)
+    place = models.CharField(max_length=255)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.full_name
+        return f"Request by {self.name} from {self.place}"
