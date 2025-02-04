@@ -8,7 +8,7 @@ class DonorRegistrationForm(forms.ModelForm):
         model = Donor
         fields = ['name', 'blood_group', 'contact_number', 'city', 'age']
 
-class BloodDonationRequestForm(forms.ModelForm):
-    class Meta:
-        model = BloodDonationRequest
-        fields = ['name', 'phone', 'place', 'message']
+# class BloodDonationRequestForm(forms.ModelForm):
+#     class Meta:
+#         model = BloodDonationRequest
+#         fields = ['name', 'phone', 'place', 'message']

@@ -136,12 +136,15 @@ def blood_donation_request(request):
         place = request.POST.get('place')
         message = request.POST.get('message')
 
-        blood_donation_request = BloodDonationRequest(name=name,phone=phone,place=place,message=message)
-        blood_donation_request.save()
+        if name and phone and place and message:
+            data = BloodDonationRequest(name=name,phone=phone,place=place,message=message)
+            data.save()
+            print("Name:{name}, Phone:{phone}, Place:{place}, Message:{message}")
+            return redirect('user_home')
+    donors = BloodDonationRequest.objects.all()
 
-        return redirect('user_home')
-    return render(request, 'user/home.html')
-    
+    return render(request,'user/home.html',{'blood_donation_request': donors})
+
 def user_home(req):
     if 'user' in req.session:
         bloodrequest=BloodRequest.objects.all()
