@@ -130,20 +130,21 @@ def view_register_donate(request):
 
 
 def blood_donation_request(request):
-    if request.method == 'POST':
+    print('jgyhfyfy')
+    if request.method =='POST':
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         place = request.POST.get('place')
         message = request.POST.get('message')
 
         if name and phone and place and message:
-            data = BloodDonationRequest(name=name,phone=phone,place=place,message=message)
+            data = BloodDonationRequest(name=name, phone=phone, place=place, message=message)
             data.save()
-            print("Name:{name}, Phone:{phone}, Place:{place}, Message:{message}")
-            return redirect('user_home')
-    donors = BloodDonationRequest.objects.all()
+            print(f"Name: {name}, Phone: {phone}, Place: {place}, Message: {message}") 
+            return redirect(user_home)
+    
 
-    return render(request,'user/home.html',{'blood_donation_request': donors})
+
 
 def user_home(req):
     if 'user' in req.session:

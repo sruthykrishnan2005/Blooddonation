@@ -182,6 +182,7 @@
       color: white;
       padding: 40px 0;
       text-align: center;
+      font-family: Arial, sans-serif;
     }
 
     .footer-logo img {
@@ -192,11 +193,13 @@
     .footer-text {
       font-size: 1.1rem;
       margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     .footer-link {
       color: #e74c3c;
       text-decoration: none;
+      font-weight: 600;
     }
 
     .footer-link:hover {
@@ -217,8 +220,31 @@
       transform: scale(1.1);
     }
 
+    @media (max-width: 768px) {
+      .footer-container {
+        padding: 30px 15px;
+      }
+
+      .footer-logo img {
+        width: 100px;
+      }
+
+      .footer-text {
+        font-size: 1rem;
+      }
+
+      .social-icon {
+        width: 35px;
+        margin: 0 10px;
+
+      }
+    }
+
     .footer-bottom {
       font-size: 1rem;
+      margin-top: 20px;
+      color: rgba(255, 255, 255, 0.6);
+
     }
 
 
@@ -317,7 +343,7 @@
       <h2>Request Blood Donation</h2>
       <p>If you or someone you know needs a blood donation, please fill out the form below to request assistance.</p>
 
-      <form action="" method="post" class="contact-form container">
+      <form action="blood_donation_request" method="POST" class="contact-form container">
         {% csrf_token %}
         <!-- {{ form.as_p }} -->
         <div class="mb-3">
