@@ -6,7 +6,7 @@ urlpatterns = [
 
     #------------------admin----------------#
     path('admin_home',views.admin_home),
-    path('logout',views.blood_logout),
+    path('logout/',views.blood_logout),
     path('add_blood_request', views.add_blood_request),
     path('edit_patient/<pid>',views.edit_patient),
     path('delete_patient/<pid>',views.delete_patient),
