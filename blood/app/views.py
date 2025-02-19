@@ -143,16 +143,20 @@ def user_home(req):
 
 def blood_donation_request(request):
     print('jgyhfyfy')
+    blood_types = [
+        "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"
+    ]
     if request.method =='POST':
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         place = request.POST.get('place')
+        blood_type = request.POST.get("blood_type")
         message = request.POST.get('message')
 
-        if name and phone and place and message:
-            data = BloodDonationRequest(name=name, phone=phone, place=place, message=message)
+        if name and phone and place and blood_types and message:
+            data = BloodDonationRequest(name=name, phone=phone, place=place,blood_type=blood_type, message=message)
             data.save()
-            print(f"Name: {name}, Phone: {phone}, Place: {place}, Message: {message}") 
+            print(f"Name: {name}, Phone: {phone}, Place: {place}, Blood type: {blood_types}, Message: {message}") 
             return redirect(user_home)
 
 
