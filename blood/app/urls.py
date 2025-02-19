@@ -17,7 +17,7 @@ urlpatterns = [
 
     #------------------user-----------------#
     path('user_home', views.user_home),
-    path('register',views.Register),
+    path('register/',views.Register),
     path('about_us', views.about_us),
     path('view_patient/<int:pid>/',views.view_patient),
     path('contact/', views.contact),

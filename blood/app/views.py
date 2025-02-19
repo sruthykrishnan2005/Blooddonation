@@ -129,6 +129,18 @@ def view_register_donate(request):
 #     return render(request, 'user/home.html', {'form': form})
 
 
+
+    
+
+
+
+def user_home(req):
+    if 'user' in req.session:
+        bloodrequest=BloodRequest.objects.all()
+        return render(req,'user/home.html',{'BloodRequest':bloodrequest})
+    else:
+        return redirect(blood_login)
+
 def blood_donation_request(request):
     print('jgyhfyfy')
     if request.method =='POST':
@@ -142,16 +154,6 @@ def blood_donation_request(request):
             data.save()
             print(f"Name: {name}, Phone: {phone}, Place: {place}, Message: {message}") 
             return redirect(user_home)
-    
-
-
-
-def user_home(req):
-    if 'user' in req.session:
-        bloodrequest=BloodRequest.objects.all()
-        return render(req,'user/home.html',{'BloodRequest':bloodrequest})
-    else:
-        return redirect(blood_login)
 
 
 def Register(req):

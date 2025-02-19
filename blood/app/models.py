@@ -24,10 +24,22 @@ class BloodRequest(models.Model):
         return f"Blood request for {self.patient_name} at {self.place}"
 
 class BloodDonationRequest(models.Model):
+    BLOOD_TYPE_CHOICES = [
+        ('A+', 'A+'),
+        ('A-', 'A-'),
+        ('B+', 'B+'),
+        ('B-', 'B-'),
+        ('O+', 'O+'),
+        ('O-', 'O-'),
+        ('AB+', 'AB+'),
+        ('AB-', 'AB-'),
+    ]
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=15)
     place = models.CharField(max_length=255)
+    blood_type = models.CharField(max_length=3, choices=BLOOD_TYPE_CHOICES)
     message = models.TextField()
+    
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
