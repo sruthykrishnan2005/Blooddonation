@@ -16,27 +16,27 @@
             color: #333;
         }
 
-       
-    .navbar {
-      margin-bottom: 10px;
-      height: 60px;
-    }
 
-    .navbar-brand {
-      font-size: 1.8rem;
-      font-weight: bold;
+        /* .navbar {
+            margin-bottom: 10px;
+            height: 60px;
+        }
 
-    }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
 
-    .navbar-nav .nav-link {
-      font-size: 1.1rem;
-      color: black;
+        } */
 
-    }
-    .container h2{
-        margin-top: 80px;
-    }
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            color: black;
 
+        }
+
+        .container h2 {
+            margin-top: 80px;
+        }
     </style>
 </head>
 
@@ -52,12 +52,14 @@
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../about_us">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="../register_to_donate">Register To Donate</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../contact">Contact us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../view_request_blood_user">View Request Blood</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../contact">Contact Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="../logout">Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
 
     <div class="container mt-5">
         <h2 class="text-center mb-4">Register To Donate</h2>
@@ -101,7 +103,8 @@
                 <div class="col-lg-7">
                     <h3 class="mb-3">{{ donor.name }}</h3>
                     <p>Blood Group: <span class="text-success fw-bold">{{ donor.blood_group }}</span></p>
-                    <p>Contact Number: <navbar navbar-expand-sm bg-dark navbar-darkspan class="text-success fw-bold">{{donor.contact_number }}</span></p>
+                    <p>Contact Number: <navbar navbar-expand-sm bg-dark navbar-darkspan class="text-success fw-bold">
+                            {{donor.contact_number }}</span></p>
                     <p>City: <span class="text-success fw-bold">{{ donor.city }}</span></p>
                     <p>Age: <span class="text-success fw-bold">{{ donor.age }}</span></p>
                 </div>

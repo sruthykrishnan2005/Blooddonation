@@ -39,6 +39,7 @@ class BloodDonationRequest(models.Model):
     place = models.CharField(max_length=255)
     blood_type = models.CharField(max_length=3, choices=BLOOD_TYPE_CHOICES)
     message = models.TextField()
+    is_active = models.BooleanField(default=True) 
     
     created_at = models.DateTimeField(auto_now_add=True)
 

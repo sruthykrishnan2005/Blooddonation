@@ -37,7 +37,6 @@ def blood_login(request):
     else:
         return render(request,'login.html')
 
-
 def blood_logout(req):
     logout(req)
     req.session.flush()
@@ -45,9 +44,11 @@ def blood_logout(req):
 
 
 
+
 def admin_home(req):
     bloodrequest=BloodRequest.objects.all()
     return render(req,'admin/home.html',{'BloodRequest':bloodrequest})
+
 
 def add_blood_request(req) :
     if 'admin' in req.session:
@@ -90,6 +91,7 @@ def delete_patient(req,pid):
     data.delete()
     return redirect(admin_home)
 
+
 def view_register_donate(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -97,16 +99,154 @@ def view_register_donate(request):
         contact_number = request.POST.get('cno')
         city = request.POST.get('city')
         age = request.POST.get('age')
-
-       
+        
         if name and blood_group and contact_number and city and age:
             data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
             data.save()
-            
             return redirect('admin_home')
 
     donors = Donor.objects.all()
     return render(request, 'admin/viewregisterdonate.html', {'donors': donors})
+
+
+def view_request_blood(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        place = request.POST.get('place')
+        blood_type = request.POST.get('blood_type')
+        message = request.POST.get('message')
+        
+        if name and phone and place and blood_type and message:
+            data = BloodDonationRequest(name=name,phone=phone,place=place,blood_type=blood_type,message=message)
+            data.save()
+            return redirect('admin_home')
+
+    requests = BloodDonationRequest.objects.all()
+    return render(request, 'admin/viewrequestblood.html', {'requests': requests})
+
+
+
+
+
+
+    
+def user_home(req):
+    if 'user' in req.session:
+        bloodrequest=BloodRequest.objects.all()
+        return render(req,'user/home.html',{'BloodRequest':bloodrequest})
+    else:
+        return redirect(blood_login)
+
+
+def blood_donation_request(request):
+    print('jgyhfyfy')
+    blood_types = [
+        "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"
+    ]
+    if request.method =='POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        place = request.POST.get('place')
+        blood_type = request.POST.get("blood_type")
+        message = request.POST.get('message')
+
+        if name and phone and place and blood_types and message:
+            data = BloodDonationRequest(name=name, phone=phone, place=place,blood_type=blood_type, message=message)
+            data.save()
+            print(f"Name: {name}, Phone: {phone}, Place: {place}, Blood type: {blood_types}, Message: {message}") 
+            return redirect(user_home)
+
+
+def view_request_blood_user(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        place = request.POST.get('place')
+        blood_type = request.POST.get('blood_type')
+        message = request.POST.get('message')
+
+       
+        if name and phone and place and blood_type and message:
+            data = BloodDonationRequest(name=name,phone=phone,place=place,blood_type=blood_type,message=message)
+            data.save()
+            
+            return redirect('admin_home')
+
+    requests = BloodDonationRequest.objects.all()
+    active=BloodDonationRequest.objects.filter(is_active=True)
+    return render(request, 'user/viewrequestblooduser.html', {'requests': requests, 'active':active})
+
+def qty_in(request,bid):
+    data=BloodDonationRequest.objects.get(pk=bid)
+    data.BloodDonationRequest=False
+    data.save()
+    return redirect(view_request_blood_user)
+
+
+def Register(req):
+    if req.method=='POST':
+        uname=req.POST['uname']
+        email=req.POST['email']
+        password=req.POST['password']
+        
+        try:
+            data=User.objects.create_user(first_name=uname,email=email,username=email,password=password)
+            data.save()
+        except:
+            messages.warning(req,"username already exist")
+            return redirect(Register)
+        return redirect(blood_login)
+    else:
+        return render(req,'user/register.html')
+    
+
+def about_us(req):
+    return render(req,'user/about.html')
+
+
+def view_patient(request,pid):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        blood_group = request.POST.get('bldgrp')
+        contact_number = request.POST.get('cno')
+        city = request.POST.get('city')
+        age = request.POST.get('age')
+        
+        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
+        data.save()
+
+        return redirect(register_to_donate)
+    # donors = Donor.objects.all()
+    # return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
+    data=BloodRequest.objects.get(pk=pid)
+    return render(request,'user/viewpatient.html',{'BloodRequest': data})
+
+def contact(req):
+    return render(req,'user/contact.html')
+
+
+def register_to_donate(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        blood_group = request.POST.get('bldgrp')
+        contact_number = request.POST.get('cno')
+        city = request.POST.get('city')
+        age = request.POST.get('age')
+        
+        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
+        data.save()
+
+        return redirect(register_to_donate)
+
+    donors = Donor.objects.all()
+
+    return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
+
+
+
+
+
 
 
 
@@ -130,81 +270,6 @@ def view_register_donate(request):
 
 
 
-    
-
-
-
-def user_home(req):
-    if 'user' in req.session:
-        bloodrequest=BloodRequest.objects.all()
-        return render(req,'user/home.html',{'BloodRequest':bloodrequest})
-    else:
-        return redirect(blood_login)
-
-def blood_donation_request(request):
-    print('jgyhfyfy')
-    blood_types = [
-        "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"
-    ]
-    if request.method =='POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        place = request.POST.get('place')
-        blood_type = request.POST.get("blood_type")
-        message = request.POST.get('message')
-
-        if name and phone and place and blood_types and message:
-            data = BloodDonationRequest(name=name, phone=phone, place=place,blood_type=blood_type, message=message)
-            data.save()
-            print(f"Name: {name}, Phone: {phone}, Place: {place}, Blood type: {blood_types}, Message: {message}") 
-            return redirect(user_home)
-
-
-def Register(req):
-    if req.method=='POST':
-        uname=req.POST['uname']
-        email=req.POST['email']
-        password=req.POST['password']
-        
-        try:
-            data=User.objects.create_user(first_name=uname,email=email,username=email,password=password)
-            data.save()
-        except:
-            messages.warning(req,"username already exist")
-            return redirect(Register)
-        return redirect(blood_login)
-    else:
-        return render(req,'user/register.html')
-    
-
-def about_us(req):
-    return render(req,'user/about.html')
-
-# def view_patient(req,pid):
-#     if 'admin' in req.session:
-#         data=Donor.objects.all(pk=pid)
-#         return render(req,'user/viewpatient.html',{'donors':data})
-#     else:
-#         return redirect(register_to_donate)
-
-
-def view_patient(request,pid):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        blood_group = request.POST.get('bldgrp')
-        contact_number = request.POST.get('cno')
-        city = request.POST.get('city')
-        age = request.POST.get('age')
-        
-        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
-        data.save()
-
-        return redirect(register_to_donate)
-    # donors = Donor.objects.all()
-    # return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
-    data=BloodRequest.objects.get(pk=pid)
-    return render(request,'user/viewpatient.html',{'BloodRequest': data})
-
 # def view_patient(request, pid):
   
 #     try:
@@ -226,24 +291,9 @@ def view_patient(request,pid):
 #     return render(request, 'user/viewpatient.html', {'patient': patient, 'form': form})
 
 
-
-def contact(req):
-    return render(req,'user/contact.html')
-
-def register_to_donate(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        blood_group = request.POST.get('bldgrp')
-        contact_number = request.POST.get('cno')
-        city = request.POST.get('city')
-        age = request.POST.get('age')
-        
-        data = Donor(name=name,blood_group=blood_group,contact_number=contact_number,city=city,age=age)
-        data.save()
-
-        return redirect(register_to_donate)
-
-    donors = Donor.objects.all()
-
-    return render(request, 'user/registertodonate.html', {'register_to_donate': donors})
-
+# def view_patient(req,pid):
+#     if 'admin' in req.session:
+#         data=Donor.objects.all(pk=pid)
+#         return render(req,'user/viewpatient.html',{'donors':data})
+#     else:
+#         return redirect(register_to_donate)
