@@ -126,7 +126,7 @@
 
     <div class="container">
         <div class="row">
-            {% for i in requests %}
+            {% for i in active %}
             <div class="col-lg-12">
                 <div class="col-lg-7">
                     <h1 class="mb-3">{{i.name}}</h1>
@@ -134,14 +134,13 @@
                     <p>place:<span class="text-success fw-bold">{{i.place}}</span></p>
                     <p>blood_type:<span class="text-success fw-bold">{{i.blood_type}}</span></p>
                     <p>message:<span class="text-success fw-bold">{{i.message}}</span></p>
-                    <a href="qty_in/{{i.pk}}">Close</a>
+                    <a href="../qty_in/{{i.pk}}">Close</a>
                     <!-- <a href="view_request_blood_user{{i.pk}}"><button class="btn btn-primary mt-3">Close</button></a> -->
-
-
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </body>
+
 </html>

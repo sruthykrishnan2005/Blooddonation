@@ -171,16 +171,17 @@ def view_request_blood_user(request):
             data = BloodDonationRequest(name=name,phone=phone,place=place,blood_type=blood_type,message=message)
             data.save()
             
-            return redirect('admin_home')
+            return redirect('user_home')
 
     requests = BloodDonationRequest.objects.all()
     active=BloodDonationRequest.objects.filter(is_active=True)
     return render(request, 'user/viewrequestblooduser.html', {'requests': requests, 'active':active})
 
-def qty_in(request,bid):
-    data=BloodDonationRequest.objects.get(pk=bid)
-    data.BloodDonationRequest=False
+def qty_in(request,pk):
+    data=BloodDonationRequest.objects.get(pk=pk)
+    data.is_active=False
     data.save()
+    print(data.is_active)
     return redirect(view_request_blood_user)
 
 
@@ -203,6 +204,26 @@ def Register(req):
 
 def about_us(req):
     return render(req,'user/about.html')
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        city = request.POST.get('city')
+        message = request.POST.get('message')
+
+        if not name or not email or not phone or not city or not message:
+            messages.error(request, "All fields are required.")
+        else:
+            # Create a new Contact object and save it to the database
+            Contact.objects.create(name=name, email=email, phone=phone, city=city, message=message)
+            messages.success(request, "Your message has been sent successfully!")
+
+            # Redirect to the same contact page or another page after successful submission
+            return redirect('contact')
+
+    return render(request, 'user/contact.html')
 
 
 def view_patient(request,pid):

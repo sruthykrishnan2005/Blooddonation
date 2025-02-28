@@ -45,3 +45,13 @@ class BloodDonationRequest(models.Model):
 
     def __str__(self):
         return f"Request by {self.name} from {self.place}"
+    
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    city = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return f"Message from {self.name}"

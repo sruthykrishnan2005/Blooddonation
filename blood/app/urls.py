@@ -19,11 +19,12 @@ urlpatterns = [
     path('user_home', views.user_home),
     path('register/',views.Register),
     path('about_us', views.about_us),
+    path('contact/', views.contact),  
     path('view_patient/<int:pid>/',views.view_patient),
     path('contact/', views.contact),
     path('register_to_donate/', views.register_to_donate),
     path('blood_donation_request', views.blood_donation_request),
     path('view_request_blood_user/',views.view_request_blood_user),
-    path('qty_in/<bid>',views.qty_in),
+    path('qty_in/<pk>',views.qty_in),
 
 ]
