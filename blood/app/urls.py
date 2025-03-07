@@ -5,7 +5,7 @@ urlpatterns = [
     path('',views.blood_login),
 
     #------------------admin----------------#
-    path('admin_home',views.admin_home),
+    path('admin_home',views.admin_home,name='admin_home'),
     path('logout/',views.blood_logout),
     path('add_blood_request', views.add_blood_request),
     path('edit_patient/<pid>',views.edit_patient),
@@ -16,15 +16,17 @@ urlpatterns = [
 
 
     #------------------user-----------------#
-    path('user_home', views.user_home),
-    path('register/',views.Register),
-    path('about_us', views.about_us),
-    path('contact/', views.contact),  
-    path('view_patient/<int:pid>/',views.view_patient),
+    path('user/home/', views.user_home, name='user_home'),
+    path('user/logout/',views.blood_logout),
+    path('register/', views.Register, name='register'),
+    path('user/about_us/',views.about_us,name='about_us'),
+    path('user/contact/', views.contact, name='contact'),   
+    path('user/home/view_patient/<int:pid>/', views.view_patient, name='view_patient'),
     path('contact/', views.contact),
-    path('register_to_donate/', views.register_to_donate),
-    path('blood_donation_request', views.blood_donation_request),
-    path('view_request_blood_user/',views.view_request_blood_user),
-    path('qty_in/<pk>',views.qty_in),
+    path('user/register_to_donate/', views.register_to_donate),
+    path('user/home/blood_donation_request', views.blood_donation_request, name='blood_donation_request'),
+    path('user/view_request_blood_user/',views.view_request_blood_user),
+    path('user/qty_in/<int:pk>/', views.qty_in, name='qty_in'),
+    path('verify_otp/', views.verify_otp, name='verify_otp'),
 
 ]

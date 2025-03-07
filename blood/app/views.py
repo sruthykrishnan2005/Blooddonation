@@ -4,7 +4,10 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 import os
+import random
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
+from django.core.mail import send_mail
 from django.conf import settings
 # from .models import Donor
 # from .forms import DonorRegistrationForm
@@ -14,6 +17,9 @@ from django.conf import settings
 
 
 # Create your views here.
+
+
+
 def blood_login(request):
     if 'admin' in request.session:
         return redirect(admin_home)
@@ -36,6 +42,8 @@ def blood_login(request):
             return redirect(blood_login)
     else:
         return render(request,'login.html')
+
+
 
 def blood_logout(req):
     logout(req)
@@ -185,25 +193,103 @@ def qty_in(request,pk):
     return redirect(view_request_blood_user)
 
 
-def Register(req):
-    if req.method=='POST':
-        uname=req.POST['uname']
-        email=req.POST['email']
-        password=req.POST['password']
-        
+def generate_otp():
+    return str(random.randint(100000, 999999))
+
+def verify_otp(request):
+    Username = request.session.get('username')
+    stored_otp = request.session.get('otp')
+
+ 
+    if not Username or not stored_otp:
+        messages.error(request, "Session expired. Please log in again.")
+        return redirect('blood_login')
+
+    if request.method == "POST":
+        if "resend_otp" in request.POST:
+            try:
+                user = User.objects.get(username=Username)
+                new_otp = generate_otp()
+                request.session['otp'] = new_otp  
+
+                send_mail(
+                    'Your New OTP',
+                    f'Your new OTP is {new_otp}. Please enter it to verify your login.',
+                    'your_email@example.com', 
+                    [user.email],
+                    fail_silently=False,
+                )
+
+                messages.success(request, "A new OTP has been sent to your email.")
+                return redirect('verify_otp')
+
+            except User.DoesNotExist:
+                messages.error(request, "User not found.")
+                return redirect('blood_login')
+            
+        entered_otp = request.POST.get('otp', '')
+
+        if entered_otp == stored_otp:
+            try:
+                user = User.objects.get(username=Username)
+
+                if user.is_superuser:
+                    messages.error(request, "Admins do not require OTP verification.")
+                    return redirect('blood_login')
+
+                login(request, user) 
+
+                del request.session['otp']
+                request.session['user'] = Username  
+
+                return redirect('user_home') 
+
+            except User.DoesNotExist:
+                messages.error(request, "User not found.")
+                return redirect('blood_login')
+
+        else:
+            messages.error(request, "Invalid OTP. Please try again.")
+            return redirect('verify_otp')
+
+    return render(request, 'user/otpview.html')
+
+
+def Register(request):
+    if request.method == 'POST':
+        uname = request.POST['uname']
+        email = request.POST['email']
+        password = request.POST['password']
+
         try:
-            data=User.objects.create_user(first_name=uname,email=email,username=email,password=password)
+            data = User.objects.create_user(first_name=uname,username=uname, email=email, password=password, )
             data.save()
-        except:
-            messages.warning(req,"username already exist")
-            return redirect(Register)
-        return redirect(blood_login)
+            
+            otp = generate_otp()
+            request.session['otp'] = otp
+            request.session['username'] = uname
+
+            send_mail(
+                'Your OTP for Login',
+                f'Your OTP is {otp}. Please enter it to complete your registration.',
+                'your_email@example.com',  
+                [email],  
+                fail_silently=False,
+            )
+
+            
+            return redirect('verify_otp')
+
+        except Exception as e:
+            messages.warning(request, "Username already exists ")
+            return redirect('register') 
+
     else:
-        return render(req,'user/register.html')
-    
+        return render(request, 'user/register.html')
 
 def about_us(req):
     return render(req,'user/about.html')
+
 
 def contact(request):
     if request.method == "POST":
@@ -213,18 +299,31 @@ def contact(request):
         city = request.POST.get('city')
         message = request.POST.get('message')
 
+    
         if not name or not email or not phone or not city or not message:
             messages.error(request, "All fields are required.")
         else:
-            # Create a new Contact object and save it to the database
-            Contact.objects.create(name=name, email=email, phone=phone, city=city, message=message)
-            messages.success(request, "Your message has been sent successfully!")
+            try:
+              
+                data = Contact.objects.create(
+                    name=name, 
+                    email=email, 
+                    phone=phone, 
+                    city=city, 
+                    message=message
+                )
+                data.save()
+                
+                messages.success(request, "Your message has been sent successfully!")
 
-            # Redirect to the same contact page or another page after successful submission
-            return redirect('contact')
+                return redirect('contact') 
 
+            except Exception as e:
+                messages.error(request, "There was an error processing your message. Please try again.")
+                return redirect('contact')  
+
+   
     return render(request, 'user/contact.html')
-
 
 def view_patient(request,pid):
     if request.method == 'POST':

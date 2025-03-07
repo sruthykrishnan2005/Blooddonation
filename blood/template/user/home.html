@@ -16,17 +16,6 @@
       color: #333;
     }
 
-/* 
-    .navbar {
-      margin-bottom: 10px;
-      height: 60px;
-    }
-
-    .navbar-brand {
-      font-size: 1.8rem;
-      font-weight: bold;
-
-    } */
 
     .navbar-nav .nav-link {
       font-size: 1.1rem;
@@ -55,7 +44,8 @@
 
 
     .header-banner img {
-      width: 100%;
+      width: 80%;
+      max-width: 900px;
       height: auto;
       object-fit: cover;
       overflow: hidden;
@@ -81,11 +71,20 @@
       color: #343a40;
     }
 
+    .options .option {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
     .options .option img {
       width: 100%;
       height: 300px;
       object-fit: cover;
     }
+
+
 
     .card p {
       font-size: 1.1rem;
@@ -273,11 +272,45 @@
       @media (max-width: 768px) {
         .navbar-collapse {
           max-height: 80vh;
-          /* Adjust this height to suit your design */
           overflow-y: auto;
         }
       }
     }
+
+    @media (max-width: 768px) {
+      .option h3 {
+        font-size: 1.2rem;
+      }
+
+      .options .option img {
+        height: 200px;
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .option h3 {
+        font-size: 1rem;
+      }
+
+      .options .option img {
+        height: 150px;
+        width: 80%;
+      }
+    }
+
+
+    /* 
+    .navbar {
+      margin-bottom: 10px;
+      height: 60px;
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+
+    } */
   </style>
 </head>
 
@@ -418,7 +451,8 @@
           <div class="col-lg-7">
             <h3 class="mb-3">{{ donor.name }}</h3>
             <p>phone: <span class="text-success fw-bold">{{ donor.phone }}</span></p>
-            <p>place: <navbar navbar-expand-sm bg-dark navbar-darkspan class="text-success fw-bold">{{donor.place}}</span></p>
+            <p>place: <navbar navbar-expand-sm bg-dark navbar-darkspan class="text-success fw-bold">
+                {{donor.place}}</span></p>
             <p>blood_type: <span class="text-success fw-bold">{{ donor.blood_type }}</span></p>
             <p>message: <span class="text-success fw-bold">{{ donor.message }}</span></p>
           </div>
@@ -426,7 +460,7 @@
         {% endfor %}
       </div>
     </div>
-    
+
 
     <div class="footer-container">
       <div class="footer-logo text-center mb-4">
